@@ -3,64 +3,107 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Snake Smash 3D</title>
-<meta name="description" content="A hyper-casual 3D snake arena game by TonTech. Grow, clash, smash the tower.">
+<title>Snake Smash 3D - Tower Crush</title>
+<meta name="description" content="A fast 3D snake arena game. Grow your snake, out-size rivals, and smash the tower. By TonTech.">
 <meta name="theme-color" content="#0A1426">
+<meta property="og:title" content="Snake Smash 3D - Tower Crush">
+<meta property="og:description" content="Grow your snake, clash with rivals, and smash the tower.">
+<meta property="og:image" content="https://tontechco.github.io/snakesmash-site/assets/hero.png">
 <style>
   :root { color-scheme: dark; }
   * { box-sizing: border-box; }
   body {
     font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    margin: 0;
-    color: #E6E9F2;
-    background: #0A1426;
-    background-image: radial-gradient(1100px 520px at 50% -12%, rgba(52,199,89,0.13), transparent 62%);
+    margin: 0; color: #E6E9F2; background: #0A1426;
+    background-image: radial-gradient(1200px 620px at 50% -10%, rgba(52,199,89,0.16), transparent 60%);
     background-repeat: no-repeat;
   }
   .bar { height: 4px; background: linear-gradient(90deg, #1F9D55, #34C759, #7DE6A0); }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 40px 24px 104px; }
-  header.site { margin: 6px 0 30px; }
-  header.site a {
-    font-size: 1rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
-    color: #34C759; text-decoration: none;
-  }
-  h1 { color: #fff; font-size: 1.95rem; line-height: 1.2; margin: .15em 0 .5em; font-weight: 800; letter-spacing: -0.01em; }
-  p, li { color: rgba(230,233,242,0.82); }
-  a { color: #7DE6A0; text-decoration-color: rgba(125,230,160,0.4); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+  a { color: #7DE6A0; text-decoration: none; }
   a:hover { color: #34C759; }
-  strong { color: #fff; font-weight: 700; }
-  ul { padding-left: 1.2em; }
-  li { margin: .3em 0; }
-  li::marker { color: #34C759; }
-  em { color: rgba(230,233,242,0.55); }
-  footer {
-    margin-top: 56px; padding-top: 22px;
-    border-top: 1px solid rgba(255,255,255,0.10);
-    font-size: .85rem; color: rgba(230,233,242,0.45);
-  }
-  footer a { color: rgba(125,230,160,0.85); text-decoration: none; }
-  footer a:hover { color: #34C759; }
+  header.site { padding: 18px 0; }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .brand { font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #34C759; }
+  nav a { color: #E6E9F2; opacity: .85; margin-left: 18px; font-size: .92rem; }
+  .hero { text-align: center; padding: 40px 0 30px; }
+  .hero img { width: 280px; max-width: 70%; filter: drop-shadow(0 18px 40px rgba(0,0,0,.5)); }
+  .hero h1 { font-size: clamp(2.1rem, 6vw, 3.4rem); font-weight: 800; letter-spacing: -.02em; margin: 18px 0 8px; color: #fff; }
+  .hero h1 span { color: #34C759; }
+  .tagline { font-size: 1.15rem; color: #C9D1D9; margin: 0 0 22px; }
+  .soon { display: inline-block; background: rgba(52,199,89,.15); border: 1px solid rgba(52,199,89,.4);
+          color: #7DE6A0; font-weight: 700; padding: 11px 22px; border-radius: 12px; }
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; padding: 40px 0; }
+  .card { background: #141a30; border: 1px solid rgba(255,255,255,.07); border-radius: 18px; padding: 22px 24px; }
+  .card h3 { margin: 0 0 6px; color: #fff; font-size: 1.15rem; }
+  .card p { margin: 0; color: #aeb6c8; font-size: .96rem; }
+  .card .ic { font-size: 1.7rem; }
+  h2.section { text-align: center; font-size: 1.7rem; color: #fff; margin: 30px 0 6px; }
+  p.section { text-align: center; color: #9aa3b8; margin: 0 0 24px; }
+  .snakes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 8px 0 40px; }
+  .snakes figure { margin: 0; text-align: center; background: #141a30; border-radius: 16px; padding: 12px 6px;
+                   border: 1px solid rgba(255,255,255,.06); }
+  .snakes img { width: 100%; max-width: 120px; }
+  .snakes figcaption { font-size: .8rem; color: #9aa3b8; margin-top: 4px; }
+  .shots { display: flex; gap: 16px; overflow-x: auto; padding: 8px 0 40px; scroll-snap-type: x mandatory; }
+  .shots img { height: 520px; border-radius: 22px; scroll-snap-align: center; box-shadow: 0 12px 30px rgba(0,0,0,.45); }
+  footer { border-top: 1px solid rgba(255,255,255,.10); padding: 28px 0; text-align: center; color: #8B949E; font-size: .9rem; }
+  footer a { color: rgba(125,230,160,.9); }
+  @media (max-width: 620px) { .snakes { grid-template-columns: repeat(2, 1fr); } }
 </style>
 </head>
 <body>
   <div class="bar"></div>
+  <header class="site"><div class="wrap">
+    <span class="brand">Snake Smash 3D</span>
+    <nav><a href="./privacy">Privacy</a><a href="./terms">Terms</a><a href="mailto:info@tontech.co?subject=Snake%20Smash%20support">Support</a></nav>
+  </div></header>
+
+  <section class="hero"><div class="wrap">
+    <img src="assets/hero.png" alt="Snake Smash 3D">
+    <h1>Snake Smash <span>3D</span></h1>
+    <p class="tagline">Grow your snake. Out-size your rivals. Smash the tower.</p>
+    <span class="soon">Coming soon to the App Store</span>
+  </div></section>
+
   <div class="wrap">
-    <header class="site"><a href="https://tontechco.github.io/snakesmash-site/">Snake Smash 3D</a></header>
-<h1>Snake Smash 3D</h1>
-<p>A hyper-casual 3D snake arena game by TonTech. Grow your snake, clash with
-rival snakes, and smash the tower.</p>
-<p><em>Coming soon to the App Store.</em></p>
-<ul>
-  <li><a href="https://tontechco.github.io/snakesmash-site/privacy">Privacy Policy</a></li>
-  <li><a href="https://tontechco.github.io/snakesmash-site/terms">Terms of Service</a></li>
-  <li><a href="https://tontechco.github.io/snakesmash-site/support">Support</a></li>
-</ul>
-    <footer>
-      <a href="https://tontechco.github.io/snakesmash-site/privacy">Privacy</a> &nbsp;·&nbsp;
-      <a href="https://tontechco.github.io/snakesmash-site/terms">Terms</a> &nbsp;·&nbsp;
-      <a href="https://tontechco.github.io/snakesmash-site/support">Support</a><br>
-      © TonTech · info@tontech.co
-    </footer>
+    <div class="features">
+      <div class="card"><div class="ic">&#128013;</div><h3>Grow your snake</h3><p>Sweep up food to grow longer and stronger - the bigger you are, the more you can crush.</p></div>
+      <div class="card"><div class="ic">&#9876;&#65039;</div><h3>Clash with rivals</h3><p>Green glow means prey, red means run. Out-size enemy snakes to take them down.</p></div>
+      <div class="card"><div class="ic">&#127984;</div><h3>Smash the tower</h3><p>Every arena ends with a tower. Charge in and chomp it down chunk by chunk.</p></div>
+      <div class="card"><div class="ic">&#9889;</div><h3>Master 5 powers</h3><p>Boost, Shield, Shed Skin, Super Food Magnet, and Freeze - tapped mid-run.</p></div>
+      <div class="card"><div class="ic">&#127919;</div><h3>Daily challenges</h3><p>A fresh modifier every day, with double rewards for the bold.</p></div>
+      <div class="card"><div class="ic">&#127942;</div><h3>Global leaderboard</h3><p>Climb the worldwide ranks. How long can your snake get?</p></div>
+    </div>
+
+    <h2 class="section">Collect cool snakes</h2>
+    <p class="section">Eight snakes, each with its own stats and arena.</p>
+    <div class="snakes">
+      <figure><img src="assets/snakes/viper.png" alt="Viper"><figcaption>Viper</figcaption></figure>
+      <figure><img src="assets/snakes/tiger.png" alt="Tiger"><figcaption>Tiger</figcaption></figure>
+      <figure><img src="assets/snakes/galaxy.png" alt="Galaxy"><figcaption>Galaxy</figcaption></figure>
+      <figure><img src="assets/snakes/lava.png" alt="Lava"><figcaption>Lava</figcaption></figure>
+      <figure><img src="assets/snakes/frost.png" alt="Frost"><figcaption>Frost</figcaption></figure>
+      <figure><img src="assets/snakes/pool.png" alt="Pool"><figcaption>Pool</figcaption></figure>
+      <figure><img src="assets/snakes/dune.png" alt="Dune"><figcaption>Dune</figcaption></figure>
+      <figure><img src="assets/snakes/golden.png" alt="Golden King"><figcaption>Golden King</figcaption></figure>
+    </div>
+
+    <h2 class="section">Screenshots</h2>
+    <p class="section">A peek at the arena.</p>
+    <div class="shots">
+      <img src="assets/shots/01_smash_the_tower.png" alt="Smash the tower">
+      <img src="assets/shots/02_grow.png" alt="Grow your snake">
+      <img src="assets/shots/03_powers.png" alt="Master 5 powers">
+      <img src="assets/shots/04_snakes.png" alt="Collect cool snakes">
+      <img src="assets/shots/05_ranks.png" alt="Climb the ranks">
+    </div>
   </div>
+
+  <footer>
+    <a href="./privacy">Privacy</a> &nbsp;&middot;&nbsp; <a href="./terms">Terms</a> &nbsp;&middot;&nbsp;
+    <a href="mailto:info@tontech.co?subject=Snake%20Smash%20support">Support</a><br>
+    &copy; 2026 TonTech &middot; info@tontech.co
+  </footer>
 </body>
 </html>
